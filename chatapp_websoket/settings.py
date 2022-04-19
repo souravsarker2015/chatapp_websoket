@@ -2,13 +2,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 SECRET_KEY = 'django-insecure-m68@_7#&a^+ecj3mk09ogsrrf__i#jbvvzif53@w*k=y#tv!+='
 
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -55,6 +53,18 @@ WSGI_APPLICATION = 'chatapp_websoket.wsgi.application'
 
 ASGI_APPLICATION = "chatapp_websoket.asgi.application"
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            # "hosts": [('127.0.0.1', 6379)],
+            "hosts": [('redis://:BYkDYTMRbdDWJOf3RQ6xjum4IPlv2R7b@redis-16708.c277.us-east-1-3.ec2.cloud.redislabs.com:16708')],
+
+        },
+    },
+    # 'BACKEND': 'channels.layers.InMemoryChannelLayer',
+
+}
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -64,7 +74,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -84,7 +93,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -95,7 +103,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
